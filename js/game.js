@@ -12,17 +12,16 @@ class Game {
     this.player = new Player(
       this.gameScreen,
       this.width / 2 - this.dogWidth / 2,
-      this.height - this.dogHeight,
+      this.height / 2 - this.dogHeight / 2,
       this.dogWidth,
       this.dogHeight,
       this.width,
       this.height
     );
-    this.lives = 3;
     this.gameIsOver = false;
     this.gameIntervalId = null;
     this.gameLoopFrequency = Math.floor(1000 / 60);
-    this.renderCounter = 0;
+    console.log("Player position:", this.width / 2 - this.dogWidth / 2, this.height / 2 - this.dogHeight / 2);
   }
 
   start() {
@@ -32,72 +31,34 @@ class Game {
     this.gameScreen.style.display = "block";
     this.addSheep();
 
-    // setInterval(() => {
-    //   this.addSheep();
-    // }, 4000);
-
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
     }, this.gameLoopFrequency);
   }
 
   gameLoop() {
-    /* if (this.gameIsOver) {
-      clearInterval(this.gameIntervalId);
-    } */
-
-    this.renderCounter = ++this.renderCounter % 360;
-
     this.update();
   }
 
   update() {
     this.player.move();
-
-/*     this.addSheep();
-    if (this.renderCounter === 0) {
-  } */
-  /*  
-    this.obstacles.forEach((obstacle) => {
-      obstacle.move();
-
-      if (this.player.didCollide(obstacle)) {
-        this.player.isInvincible = true;
-        this.player.element.classList.add("invincible");
-
-        this.livesDisplay.textContent = --this.lives;
-
-        if (this.lives <= 0) {
-          this.gameIsOver = true;
-        }
-
-        setTimeout(() => {
-          this.player.isInvincible = false;
-          this.player.element.classList.remove("invincible");
-        }, 3000);
-      }
-    });
-
-    if (this.obstacles[0].top > this.height) {
-      this.obstacles[0].element.remove();
-      this.obstacles.shift();
-    } */
   }
 
   addSheep() {
-    const obstacleX =  400; /* Math.floor(Math.random() * (this.width - this.dogWidth)); */
-    const obstacleY = 400;
+    const sheepX = Math.floor(Math.random() * (this.width));
+    const sheepY = Math.floor(Math.random() * (this.height));
 
     this.sheeps.push(
       new Sheep(
         this.gameScreen,
-        obstacleX,
-        obstacleY,
+        sheepX,
+        sheepY,
         this.dogWidth,
         this.dogHeight,
         this.width,
         this.height
       )
     );
+  console.log("Sheep Position", sheepX, sheepY)
   }
 }

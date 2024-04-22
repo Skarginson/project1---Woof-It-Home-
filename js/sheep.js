@@ -7,7 +7,7 @@ class Sheep {
       this.height = height;
       this.gameWidth = gameWidth;
       this.gameHeight = gameHeight;
-  
+      this.radius = 150;
       this.element = document.createElement("div");
       this.element.className = "sheep";
       this.element.style.width = `${this.width}px`;
@@ -16,10 +16,11 @@ class Sheep {
       this.element.style.left = `${this.left}px`;
       this.element.style.borderRadius = "50%";
       this.element.style.backgroundColor = "grey";
+      this.center = getElementCenter(this.element);
       this.gameScreen.appendChild(this.element);
     }
   
-    // Random movements to add in 0.2;
+    // Random movements to add in 0.2 
  /*    move() {
       this.element.style.top = `${++this.top}px`;
     } */

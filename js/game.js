@@ -1,10 +1,10 @@
 class Game {
   // code to be added
-  constructor() {
+  constructor(gameScreen) {
     this.dogWidth = 80;
     this.dogHeight = 80;
     this.startScreen = document.querySelector("#game-intro");
-    this.gameScreen = document.querySelector("#game-screen");
+    this.gameScreen = gameScreen;
     this.gameEndScreen = document.querySelector("#game-end");
     this.height = 700;
     this.width = 700;
@@ -21,7 +21,6 @@ class Game {
     this.gameIsOver = false;
     this.gameIntervalId = null;
     this.gameLoopFrequency = Math.floor(1000 / 60);
-    console.log("Player position:", this.width / 2 - this.dogWidth / 2, this.height / 2 - this.dogHeight / 2);
   }
 
   start() {
@@ -30,6 +29,8 @@ class Game {
     this.startScreen.style.display = "none";
     this.gameScreen.style.display = "block";
     this.addSheep();
+    console.log(this.player.center)
+    console.log(this.player.element.getBoundingClientRect().x)
 
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
@@ -45,8 +46,8 @@ class Game {
   }
 
   addSheep() {
-    const sheepX = Math.floor(Math.random() * (this.width));
-    const sheepY = Math.floor(Math.random() * (this.height));
+    const sheepX = Math.floor(Math.random() * (this.width - this.dogWidth));
+    const sheepY = Math.floor(Math.random() * (this.height - this.dogHeight));
 
     this.sheeps.push(
       new Sheep(
@@ -59,6 +60,5 @@ class Game {
         this.height
       )
     );
-  console.log("Sheep Position", sheepX, sheepY)
   }
 }

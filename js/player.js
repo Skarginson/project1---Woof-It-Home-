@@ -7,6 +7,7 @@ class Player {
       this.height = height;
       this.gameWidth = gameWidth;
       this.gameHeight = gameHeight;
+      this.radius = 300;
       this.element = document.createElement("div");
       this.element.className = "player";
       this.element.style.width = `${this.width}px`;
@@ -16,32 +17,25 @@ class Player {
       this.element.style.borderRadius = "50%";
       this.element.style.backgroundColor = "black";
       this.gameScreen.appendChild(this.element);
+      this.center = getElementCenter(this.element);
     }
   
     move() {
-     this.gameScreen.addEventListener("mousemove", (e) => {
-        this.left = e.clientX - this.gameScreen.getBoundingClientRect().x - this.width / 2;
-        this.top  = e.clientY - this.gameScreen.getBoundingClientRect().y - this.height /2;
+      this.gameScreen.addEventListener("mousemove", (e) => {
+        this.left =
+          e.clientX - this.gameScreen.getBoundingClientRect().x - this.width / 2;
+        this.top =
+          e.clientY - this.gameScreen.getBoundingClientRect().y - this.height / 2;
         this.element.style.top = `${this.top}px`;
         this.element.style.left = `${this.left}px`;
-     });
+      });
     }
+  
     updatePosition() {}
-
-
-   /*  didCollide(obstacle) {
-      if (this.isInvincible) {
-        return false;
-      }
-      const playerRect = this.element.getBoundingClientRect();
-      const obstacleRect = obstacle.element.getBoundingClientRect();
   
-      return (
-        playerRect.left < obstacleRect.right &&
-        playerRect.right > obstacleRect.left &&
-        playerRect.top < obstacleRect.bottom &&
-        playerRect.bottom > obstacleRect.top
-      );
-    } */
-  }
-  
+/*     radiusContact() {
+        if (this.game.sheeps[0].center - this.center >= this.game.sheeps[0].radius + this.radius) {
+            return true
+        }
+    }
+ */    }

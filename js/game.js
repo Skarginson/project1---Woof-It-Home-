@@ -38,6 +38,7 @@ class Game {
   
   gameLoop() {
     this.update();
+    console.log(distanceBetweenPlayerAndSheep(game.player, game.sheeps[0]))
   }
 
   update() {

@@ -17,7 +17,6 @@ class Player {
       this.element.style.borderRadius = "50%";
       this.element.style.backgroundColor = "black";
       this.gameScreen.appendChild(this.element);
-      this.center = getElementCenter(this.element);
     }
   
     move() {

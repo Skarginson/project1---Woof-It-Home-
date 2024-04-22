@@ -1,23 +1,29 @@
-const gameScreen = document.querySelector("#game-screen")
+const gameScreen = document.querySelector("#game-screen");
 const game = new Game(gameScreen);
+
 
 const startButton = document.getElementById("start-button");
 const restartButton = document.getElementById("restart-button");
 
 startButton.addEventListener("click", function () {
   game.start();
-  console.log(game.sheeps[0].center, game.player.center)
 });
 
-
-function getElementCenter(element){
+function getElementCenter(element) {
   const rect = element.getBoundingClientRect();
-  const centerX = rect.left + gameScreen.getBoundingClientRect().x + rect.width / 2;
-  const centerY = rect.top + gameScreen.getBoundingClientRect().y + rect.height / 2;
+  const centerX =
+  rect.left + gameScreen.getBoundingClientRect().x + rect.width / 2;
+  const centerY =
+  rect.top + gameScreen.getBoundingClientRect().y + rect.height / 2;
   return { centerX, centerY };
 }
 
 function distanceBetweenPlayerAndSheep(player, sheep) {
-  const AB = player.element.getBoundingClientRect().x - 
+  const AB =
+    (player.center().centerX -
+    sheep.center().centerX) +
+    (player.center().centerY -
+      sheep.center().centerY);
+      const C = Math.sqrt(AB);
+  return C;
 }
-

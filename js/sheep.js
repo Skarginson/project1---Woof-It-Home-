@@ -16,10 +16,13 @@ class Sheep {
       this.element.style.left = `${this.left}px`;
       this.element.style.borderRadius = "50%";
       this.element.style.backgroundColor = "grey";
-      this.center = getElementCenter(this.element);
       this.gameScreen.appendChild(this.element);
     }
   
+    center() {
+        return getElementCenter(this.element)
+     }
+     
     // Random movements to add in 0.2 
  /*    move() {
       this.element.style.top = `${++this.top}px`;

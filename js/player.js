@@ -28,7 +28,11 @@ class Player {
           e.clientY - this.gameScreen.getBoundingClientRect().y - this.height / 2;
         this.element.style.top = `${this.top}px`;
         this.element.style.left = `${this.left}px`;
-      });
+      });    
+    }
+
+    center() {
+       return getElementCenter(this.element)
     }
   
     updatePosition() {}

@@ -27,16 +27,15 @@ class Game {
     this.gameScreen.style.height = `${this.height}px`;
     this.gameScreen.style.width = `${this.width}px`;
     this.startScreen.style.display = "none";
-    this.gameScreen.style.display = "block";
+    this.gameScreen.style.visibility = "visible";
     this.addSheep();
-    console.log(this.player.center)
-    console.log(this.player.element.getBoundingClientRect().x)
 
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
+      
     }, this.gameLoopFrequency);
   }
-
+  
   gameLoop() {
     this.update();
   }

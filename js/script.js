@@ -1,7 +1,5 @@
 const gameScreen = document.querySelector("#game-screen");
 const game = new Game(gameScreen);
-
-
 const startButton = document.getElementById("start-button");
 const restartButton = document.getElementById("restart-button");
 
@@ -24,6 +22,7 @@ function distanceBetweenPlayerAndSheep(player, sheep) {
     sheep.center().centerX) +
     (player.center().centerY -
       sheep.center().centerY);
-      const C = Math.sqrt(AB);
+      // AB can be negative so we use Math.ABS so C doesn't return NaN
+      const C = Math.sqrt(Math.abs(AB));
   return C;
 }

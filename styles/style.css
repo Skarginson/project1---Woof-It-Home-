@@ -20,22 +20,11 @@ body {
   padding: 20px 0px;
   overflow: hidden;
   position: relative;
-  background-image: url(../images/road.png);
   background-size: cover;
-  animation: slide 5s linear infinite;
+  background-color: green;
+
 }
 
-@keyframes slide {
-  0% {
-    background-position: 0 -1000px;
-  }
-  95% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 50px;
-  }
-}
 
 #game-end {
   display: none;

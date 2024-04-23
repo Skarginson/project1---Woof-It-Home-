@@ -41,6 +41,8 @@ function getSheepEscapeDistance(player, sheep) {
 
 function getSheepEscapeAngle(player, sheep) {
   const firstAngleRad = Math.atan((player.center().centerX - sheep.center().centerX) / (player.center().centerY - sheep.center().centerY));
-  const firstAngleDeg = (firstAngleRad * 180) % Math.PI;
+  console.log("Rad", firstAngleRad)
+  const firstAngleDeg = (firstAngleRad * 180) / Math.PI;
+  console.log(firstAngleDeg)
   return firstAngleDeg
 }

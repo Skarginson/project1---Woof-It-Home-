@@ -41,7 +41,7 @@ class Game {
     if (isRadiusTouching) {
       radiusTouching(game.player, game.sheeps[0]);
       getSheepEscapeDistance(game.player, game.sheeps[0]);
-      
+      getSheepEscapeAngle(game.player, game.sheeps[0]);
     }
   }
   

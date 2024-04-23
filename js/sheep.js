@@ -7,7 +7,7 @@ class Sheep {
       this.height = height;
       this.gameWidth = gameWidth;
       this.gameHeight = gameHeight;
-      this.radius = 150;
+      this.radius = 35;
       this.element = document.createElement("div");
       this.element.className = "sheep";
       this.element.style.width = `${this.width}px`;

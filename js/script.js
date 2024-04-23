@@ -16,32 +16,31 @@ function getElementCenter(element) {
   return { centerX, centerY };
 }
 
-// Make it a const ? But will it be usable for multiple sheeps?
 function distanceBetweenPlayerAndSheep(player, sheep) {
   const AB =
-    player.center().centerX -
-    sheep.center().centerX +
-    (player.center().centerY - sheep.center().centerY);
+    (player.center().centerX -
+    sheep.center().centerX) **2 +
+    (player.center().centerY - sheep.center().centerY) **2;
   // AB can be negative so we use Math.ABS so C doesn't return NaN
-  const C = Math.sqrt(Math.abs(AB));
+  const C = Math.sqrt(AB);
   return C;
 }
 
-// WIP
-function radiusTouching(callback, player, sheep) {
-  if (callback(player, sheep) >= player.radius + sheep[0].radius) {
+function radiusTouching(player, sheep) {
     console.log("radius touching");
+  // woof.mp3
+  // beeeh.mp3
   }
-}
 
-// WIP
-function getSheepEscapeDistance() {
-  return player.radius + sheep[0].radius - distanceBetweenPlayerAndSheep;
-}
-// WIP
-function getSheepEscapeAngle() {
+
+
+// WIP. Method for Sheep ? 
+function getSheepEscapeDistance(player, sheep) {
+    return (player.radius + sheep.radius) - distanceBetweenPlayerAndSheep(player, sheep);
+  }
+
+function getSheepEscapeAngle(player, sheep) {
   const firstAngleRad = Math.atan((player.center().centerX - sheep.center().centerX) / (player.center().centerY - sheep.center().centerY));
-  const firstAngleDeg = firstAngleRad * 180 % Math.PI;
-
-  
+  const firstAngleDeg = (firstAngleRad * 180) % Math.PI;
+  return firstAngleDeg
 }

@@ -1,5 +1,4 @@
 class Game {
-  // code to be added
   constructor(gameScreen) {
     this.dogWidth = 80;
     this.dogHeight = 80;
@@ -20,7 +19,7 @@ class Game {
     );
     this.gameIsOver = false;
     this.gameIntervalId = null;
-    this.gameLoopFrequency = Math.floor(1000 / 60); // is 60 fps really needed ? Lots of calc
+    this.gameLoopFrequency = Math.floor(1000 / 60); 
   }
 
   start() {
@@ -38,8 +37,12 @@ class Game {
   
   gameLoop() {
     this.update();
-    console.log(distanceBetweenPlayerAndSheep(game.player, game.sheeps[0]))
-    radiusTouching(distanceBetweenPlayerAndSheep(), game.player, game.sheeps[0])  ;
+    const isRadiusTouching = distanceBetweenPlayerAndSheep(game.player, game.sheeps[0]) <= game.player.radius + game.sheeps[0].radius
+    if (isRadiusTouching) {
+      radiusTouching(game.player, game.sheeps[0]);
+      getSheepEscapeDistance(game.player, game.sheeps[0]);
+      
+    }
   }
   
   update() {

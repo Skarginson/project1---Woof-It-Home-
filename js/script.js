@@ -32,17 +32,23 @@ function radiusTouching(player, sheep) {
   // beeeh.mp3
   }
 
-
-
-// WIP. Method for Sheep ? 
 function getSheepEscapeDistance(player, sheep) {
     return (player.radius + sheep.radius) - distanceBetweenPlayerAndSheep(player, sheep);
   }
 
 function getSheepEscapeAngle(player, sheep) {
   const firstAngleRad = Math.atan((player.center().centerX - sheep.center().centerX) / (player.center().centerY - sheep.center().centerY));
-  console.log("Rad", firstAngleRad)
   const firstAngleDeg = (firstAngleRad * 180) / Math.PI;
-  console.log(firstAngleDeg)
   return firstAngleDeg
 }
+
+function getSheepEscapeSpecs(player, sheep) {
+  const angle = getSheepEscapeAngle(player, sheep);
+  const y = ((Math.asin(angle) * 180) /Math.PI) * (player.radius + sheep.radius)
+  const x = Math.sqrt(((player.radius + sheep.radius)**2) - y**2)
+
+  return {x: x + player.top, y: y + player.left}
+}
+// then what ?
+
+// return an Object with position and angle. Why if getSheepEscapeAngle do just the same ?

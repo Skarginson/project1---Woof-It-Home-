@@ -20,7 +20,7 @@ class Game {
     );
     this.gameIsOver = false;
     this.gameIntervalId = null;
-    this.gameLoopFrequency = Math.floor(1000 / 60);
+    this.gameLoopFrequency = Math.floor(1000 / 60); // is 60 fps really needed ? Lots of calc
   }
 
   start() {
@@ -39,8 +39,9 @@ class Game {
   gameLoop() {
     this.update();
     console.log(distanceBetweenPlayerAndSheep(game.player, game.sheeps[0]))
+    radiusTouching(distanceBetweenPlayerAndSheep(), game.player, game.sheeps[0])  ;
   }
-
+  
   update() {
     this.player.move();
   }

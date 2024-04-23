@@ -36,9 +36,4 @@ class Player {
   
     updatePosition() {}
   
-/*     radiusContact() {
-        if (this.game.sheeps[0].center - this.center >= this.game.sheeps[0].radius + this.radius) {
-            return true
-        }
-    }
- */    }
+}

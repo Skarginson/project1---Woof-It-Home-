@@ -23,6 +23,14 @@ class Sheep {
         return getElementCenter(this.element)
      }
      
+    isOutOfGameScreen() {
+      const outLeft = this.left < 0;
+      const outRight = this.left + this.width > this.gameWidth;
+      const outTop = this.top < 0;
+      const outBottom = this.top + this.height > this.gameHeight;
+
+      return outLeft || outRight || outTop || outBottom;
+    }
     // Random movements to add in 0.2 
  /*    move() {
       this.element.style.top = `${++this.top}px`;

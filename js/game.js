@@ -42,9 +42,23 @@ class Game {
       radiusTouching(game.player, game.sheeps[0]);
       getSheepEscapeDistance(game.player, game.sheeps[0]);
       getSheepEscapeAngle(game.player, game.sheeps[0]);
+      console.log("specs", getSheepEscapeSpecs(game.player, game.sheeps[0]));
+      // game.sheeps[0].top = getSheepEscapeSpecs(game.player, game.sheeps[0]).y
+      // game.sheeps[0].left = getSheepEscapeSpecs(game.player, game.sheeps[0]).x
     }
+    this.sheeps.forEach(sheep => {
+      if (sheep.isOutOfGameScreen()) {
+        this.endGame();
+      }
+    });
   }
   
+  endGame() {
+    clearInterval(this.gameIntervalId);
+    this.gameIsOver = true;
+    this.gameEndScreen.style.display = "block";
+  }
+
   update() {
     this.player.move();
   }

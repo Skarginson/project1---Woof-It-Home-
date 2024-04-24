@@ -32,6 +32,7 @@ function radiusTouching(player, sheep) {
   // beeeh.mp3
   }
 
+  // useless ?
 function getSheepEscapeDistance(player, sheep) {
     return (player.radius + sheep.radius) - distanceBetweenPlayerAndSheep(player, sheep);
   }
@@ -43,10 +44,11 @@ function getSheepEscapeAngle(player, sheep) {
 }
 
 function getSheepEscapeSpecs(player, sheep) {
-  const angle = getSheepEscapeAngle(player, sheep);
+  const angle = Math.abs(getSheepEscapeAngle(player, sheep));
   const y = ((Math.asin(angle) * 180) /Math.PI) * (player.radius + sheep.radius)
   const x = Math.sqrt(((player.radius + sheep.radius)**2) - y**2)
-
+  console.log("asin angle", Math.asin(angle)) // NaN. -1 > asin > 1 === false ?
+  // console.log(angle, y, x)
   return {x: x + player.top, y: y + player.left}
 }
 // then what ?

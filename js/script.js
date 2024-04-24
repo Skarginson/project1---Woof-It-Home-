@@ -7,6 +7,10 @@ startButton.addEventListener("click", function () {
   game.start();
 });
 
+restartButton.addEventListener("click", function () {
+  game.restart();
+});
+
 function getElementCenter(element) {
   const rect = element.getBoundingClientRect();
   const centerX =

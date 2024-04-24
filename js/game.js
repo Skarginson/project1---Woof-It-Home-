@@ -59,6 +59,13 @@ class Game {
     this.gameEndScreen.style.display = "block";
   }
 
+  restart() {
+    this.gameIsOver = false;
+    this.sheeps = [];
+    this.startScreen.style.display = "block";
+    this.gameEndScreen.style.display = "none";
+    this.start();
+  }
   update() {
     this.player.move();
   }

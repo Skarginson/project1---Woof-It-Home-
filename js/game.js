@@ -17,6 +17,7 @@ class Game {
       this.width,
       this.height
     );
+    this.pen = document.querySelector("#sheep-pen")
     this.gameIsOver = false;
     this.gameIntervalId = null;
     this.gameLoopFrequency = Math.floor(1000 / 60);
@@ -66,10 +67,33 @@ class Game {
   }
 
   restart() {
+    clearInterval(this.gameIntervalId); // Arrêter le jeu actuel
     this.gameIsOver = false;
-    this.sheeps = [];
-    this.startScreen.style.display = "block";
+    this.sheeps = []; // Réinitialiser la liste des moutons
+
+    this.gameScreen.innerHTML = ''; // Nettoyer le contenu du gameScreen
+    this.gameScreen.appendChild(this.pen); // Ajouter à nouveau l'enclos
+
+    // Recréer le joueur
+    this.player = new Player(
+      this.gameScreen,
+      this.width / 2 - this.dogWidth / 2,
+      this.height / 2 - this.dogHeight / 2,
+      this.dogWidth,
+      this.dogHeight,
+      this.width,
+      this.height
+    );
+    this.gameScreen.appendChild(this.player.element);
+
+    this.addSheep(); // Ajoutez un nouveau mouton si nécessaire
+
+    // Réinitialiser les styles et la visibilité
+    this.startScreen.style.display = "none";
     this.gameEndScreen.style.display = "none";
+    this.gameScreen.style.visibility = "visible";
+
+    // Démarrer le jeu à nouveau
     this.start();
   }
   update() {

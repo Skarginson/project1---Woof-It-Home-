@@ -37,7 +37,7 @@ body {
 }
 
 .sheep {
-/* transition: top 1s linear, left 1s linear; */
+transition: top 1s linear, left 1s linear;
 }
 
 .player,

@@ -2,9 +2,7 @@ class Sheep {
     constructor(gameScreen, left, top, width, height, gameWidth, gameHeight) {
       this.gameScreen = gameScreen;
       this.left = left;
-      // this.left = 1389.6994431940877;
       this.top = top;
-      //this.top = 260.28224832477275;
       this.width = width;
       this.height = height;
       this.gameWidth = gameWidth;
@@ -20,11 +18,6 @@ class Sheep {
       this.element.style.backgroundColor = "grey";
       this.gameScreen.appendChild(this.element);
     }
-  
-
-    center() {
-        return getElementCenter(this.element)
-     }
      
     isOutOfGameScreen() {
       const outLeft = this.left < 0;
@@ -34,9 +27,34 @@ class Sheep {
 
       return outLeft || outRight || outTop || outBottom;
     }
-    // Random movements to add in 0.2 
- /*    move() {
-      this.element.style.top = `${++this.top}px`;
-    } */
+
+    escapeFromPlayer(player) {
+      const dx = player.center().centerX - this.center().centerX;
+      const dy = player.center().centerY - this.center().centerY;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const escapeDistance = 10;  // Distance que le mouton s'éloignera
+      const isRadiusTouching = distanceBetweenPlayerAndSheep(game.player, game.sheeps[0]) <= game.player.radius + game.sheeps[0].radius
+
+      // Le mouton ne bouge que si le joueur est assez proche
+      if (isRadiusTouching) {
+          // Se déplacer directement loin du joueur
+          this.left -= escapeDistance * (dx / distance);
+          this.top -= escapeDistance * (dy / distance);
+
+          this.updatePosition();
+      }
   }
+
+  updatePosition() {
+      this.element.style.left = `${this.left}px`;
+      this.element.style.top = `${this.top}px`;
+  }
+
+  center() {
+      return {
+          centerX: this.left + this.width / 2,
+          centerY: this.top + this.height / 2
+      };
+    }
   
+  }

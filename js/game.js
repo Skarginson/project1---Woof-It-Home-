@@ -37,21 +37,11 @@ class Game {
   
   gameLoop() {
     this.update();
-    const isRadiusTouching = distanceBetweenPlayerAndSheep(game.player, game.sheeps[0]) <= game.player.radius + game.sheeps[0].radius
-    console.log("player", this.player.center())
-    console.log("sheep", this.sheeps[0].center())
-    if (isRadiusTouching) {
-      const sheepEscapeSpecs = getSheepEscapeSpecs(game.player, game.sheeps[0])
-      radiusTouching(game.player, game.sheeps[0]);
-      getSheepEscapeAngle(game.player, game.sheeps[0]);
-      console.log("specs", getSheepEscapeSpecs(game.player, game.sheeps[0]));
-      game.sheeps[0].top = sheepEscapeSpecs.y - game.gameScreen.getBoundingClientRect().y;
-      game.sheeps[0].left = sheepEscapeSpecs.x - game.gameScreen.getBoundingClientRect().x;
-      console.log({top: game.sheeps[0].top, left: game.sheeps[0].left})
-      game.sheeps[0].element.style.left = `${game.sheeps[0].left}px`
-      game.sheeps[0].element.style.top = `${game.sheeps[0].top}px`
+    if (this.sheeps.length > 0) {
+      this.sheeps.forEach(sheep => {
+          sheep.escapeFromPlayer(this.player);
+      });
     }
-
     this.sheeps.forEach(sheep => {
       if (sheep.isOutOfGameScreen()) {
         this.endGame();
@@ -63,6 +53,8 @@ class Game {
     clearInterval(this.gameIntervalId);
     this.gameIsOver = true;
     this.gameEndScreen.style.display = "block";
+    this.gameScreen.style.visibility = "hidden";
+    this.gameScreen.innerHTML = "";
   }
 
   restart() {

@@ -31,7 +31,10 @@ class Player {
   }
 
   center() {
-    return getElementCenter(this.element);
+    return {
+      centerX: this.left + this.width / 2,
+      centerY: this.top + this.height / 2
+  };
   }
 
   updatePosition() {}

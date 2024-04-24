@@ -18,7 +18,7 @@ body {
   visibility: hidden;
   align-content: center;
   padding: 20px 0px;
-  /* overflow: hidden; */
+  overflow: hidden;
   position: relative;
   background-size: cover;
   background-color: green;
@@ -37,7 +37,7 @@ body {
 }
 
 .sheep {
-transition: top 1s linear, left 1s linear;
+transition: top 0.5s linear, left 0.5s linear;
 }
 
 .player,

@@ -19,7 +19,7 @@ class Game {
     );
     this.gameIsOver = false;
     this.gameIntervalId = null;
-    this.gameLoopFrequency = Math.floor(1000 / 60); 
+    this.gameLoopFrequency = Math.floor(1000 / 60);
   }
 
   start() {
@@ -31,24 +31,32 @@ class Game {
 
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
-      
     }, this.gameLoopFrequency);
   }
-  
+
   gameLoop() {
     this.update();
-    if (this.sheeps.length > 0) {
-      this.sheeps.forEach(sheep => {
-          sheep.escapeFromPlayer(this.player);
-      });
-    }
-    this.sheeps.forEach(sheep => {
+    const pen = document.getElementById("sheep-pen");
+
+    this.sheeps.forEach((sheep) => {
+      if (sheep.isInPen(pen)) {
+        this.winGame();
+      }
+      sheep.escapeFromPlayer(this.player);
       if (sheep.isOutOfGameScreen()) {
         this.endGame();
       }
     });
   }
-  
+
+  winGame() {
+    clearInterval(this.gameIntervalId);
+    this.gameIsOver = true;
+    alert("Victoire ! Le mouton est en sécurité dans son enclos ! Bon chien !");
+    this.gameEndScreen.style.display = "block";
+    this.gameScreen.style.visibility = "hidden";
+    this.gameScreen.innerHTML = "";
+  }
   endGame() {
     clearInterval(this.gameIntervalId);
     this.gameIsOver = true;

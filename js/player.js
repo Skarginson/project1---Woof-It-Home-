@@ -7,7 +7,7 @@ class Player {
     this.height = height;
     this.gameWidth = gameWidth;
     this.gameHeight = gameHeight;
-    this.radius = 75;
+    this.radius = 100;
     this.element = document.createElement("div");
     this.element.className = "player";
     this.element.style.width = `${this.width}px`;

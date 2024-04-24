@@ -18,16 +18,31 @@ body {
   visibility: hidden;
   align-content: center;
   padding: 20px 0px;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   background-size: cover;
   background-color: green;
+}
 
+#sheep-pen {
+  width: 200px;
+  height: 200px;
+  border-top: 3px solid #000;
+  border-right: 3px solid #000;
+  border-bottom: 3px solid #000;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: maroon;
+}
+
+.sheep {
+/* transition: top 1s linear, left 1s linear; */
 }
 
 .player,
 .sheep {
-  position:absolute;
+  position: absolute;
 }
 
 #game-end {
@@ -57,4 +72,3 @@ body button {
   border-radius: 5px;
   margin-bottom: 20px;
 }
-

@@ -2,7 +2,9 @@ class Sheep {
     constructor(gameScreen, left, top, width, height, gameWidth, gameHeight) {
       this.gameScreen = gameScreen;
       this.left = left;
+      // this.left = 1389.6994431940877;
       this.top = top;
+      //this.top = 260.28224832477275;
       this.width = width;
       this.height = height;
       this.gameWidth = gameWidth;
@@ -19,6 +21,7 @@ class Sheep {
       this.gameScreen.appendChild(this.element);
     }
   
+
     center() {
         return getElementCenter(this.element)
      }

@@ -42,18 +42,36 @@ function getSheepEscapeDistance(player, sheep) {
   }
 
 function getSheepEscapeAngle(player, sheep) {
-  const firstAngleRad = Math.atan((player.center().centerX - sheep.center().centerX) / (player.center().centerY - sheep.center().centerY));
-  const firstAngleDeg = (firstAngleRad * 180) / Math.PI;
+  const firstAngleRad = Math.atan(Math.abs(player.center().centerX - sheep.center().centerX) / Math.abs(player.center().centerY - sheep.center().centerY));
+  const dirX = player.left < sheep.left ? -1 : 1;
+  const dirY = player.top < sheep.top ? -1 : 1;
+  let firstAngleDeg = (firstAngleRad * 180) / Math.PI;
+  //console.log("anglebefore = ", firstAngleDeg)
+  if (dirX < 0 && dirY > 0) {
+    firstAngleDeg += 90;
+  } else if (dirX < 0 && dirY < 0) {
+    firstAngleDeg += 180;
+  } else if (dirX > 0 && dirY < 0) {
+    firstAngleDeg += 270;
+  }
   return firstAngleDeg
 }
 
 function getSheepEscapeSpecs(player, sheep) {
-  const angle = Math.abs(getSheepEscapeAngle(player, sheep));
-  const y = ((Math.asin(angle) * 180) /Math.PI) * (player.radius + sheep.radius)
-  const x = Math.sqrt(((player.radius + sheep.radius)**2) - y**2)
-  console.log("asin angle", Math.asin(angle)) // NaN. -1 > asin > 1 === false ?
-  // console.log(angle, y, x)
-  return {x: x + player.top, y: y + player.left}
+  const angle = getSheepEscapeAngle(player, sheep);
+  //console.log("angle =", angle);
+  const x = Math.sin(angle % 90) * (player.radius + sheep.radius)
+  const y = Math.sqrt(Math.abs(((player.radius + sheep.radius)**2) - x**2));
+  //console.log("y", y,"x", x)
+  const playerCenter = player.center();
+  //console.log("player center", playerCenter)
+  
+  const dirX = player.left > sheep.left ? -1 : 1;
+  const dirY = player.top > sheep.top ? -1 : 1;
+  //console.log(player.left, sheep.left)
+  //console.log({dirX, dirY})
+  console.log({playerCenter, angle, x, y, dirX, dirY})
+  return {x: (x * dirX) + playerCenter.centerX, y: (y * dirY) + playerCenter.centerY}
 }
 // then what ?
 

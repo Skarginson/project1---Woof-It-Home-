@@ -25,3 +25,5 @@ L'idée vient directement des chiens qui partagent ma vie, Bosco et Kitsu, qui a
 - Options de gameplay variées : Placer des obstacles, ajouter des murs infranchissables, encore plus de moutons.
 
 [Lien pour tester le jeu](https://skarginson.github.io/project1---Woof-It-Home-/)
+
+Un grand merci à @haroun-b notre lead teacher sur ce bootcamp pour son aide sans laquelle ce projet n'aurait jamais pu être rendu dans les temps. 

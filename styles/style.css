@@ -3,8 +3,8 @@ body {
   text-align: center;
   background-image: url("../images/background_start.webp");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50%;
+  background-size: 120%;
+  background-position: 80% 45%;
 }
 
 #game-intro {
@@ -63,8 +63,13 @@ body {
   margin: 250px auto;
   background-color: rgba(218, 218, 218, 0.8);
   padding: 20px;
-  width: 300px;
+  width: 400px;
   box-shadow: 0px 0px 10px #000000;
+}
+
+#win-message,
+#lose-message {
+  display: none;
 }
 
 body button {

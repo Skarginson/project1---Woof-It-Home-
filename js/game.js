@@ -5,6 +5,8 @@ class Game {
     this.startScreen = document.querySelector("#game-intro");
     this.gameScreen = gameScreen;
     this.gameEndScreen = document.querySelector("#game-end");
+    this.winMessage = document.querySelector("#win-message");
+    this.loseMessage = document.querySelector("#lose-message");
     this.height = 700;
     this.width = 700;
     this.sheeps = [];
@@ -29,6 +31,8 @@ class Game {
     this.gameScreen.style.width = `${this.width}px`;
     this.startScreen.style.display = "none";
     this.gameScreen.style.visibility = "visible";
+    this.winMessage.style.display = "none";
+    this.loseMessage.style.display = "none";
     this.addSheep();
     this.gameScreen.addEventListener("mousemove", (e) => this.player.move(e));
     this.gameIntervalId = setInterval(() => {
@@ -45,15 +49,22 @@ class Game {
       }
       sheep.escapeFromPlayer(this.player);
       if (sheep.isOutOfGameScreen()) {
-        this.endGame();
+        this.loseGame();
       }
     });
   }
 
   winGame() {
-    alert("Victoire ! Le mouton est en sécurité dans son enclos ! Bon chien !");
+    // alert("Victoire ! Le mouton est en sécurité dans son enclos ! Bon chien !");
+    this.winMessage.style.display = "block";
     this.endGame();
   }
+
+  loseGame() {
+    this.loseMessage.style.display = "block";
+    this.endGame();
+  }
+
   endGame() {
     clearInterval(this.gameIntervalId);
     this.gameIsOver = true;

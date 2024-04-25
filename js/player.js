@@ -1,5 +1,14 @@
 class Player {
-  constructor(gameScreen, left, top, width, height, gameWidth, gameHeight) {
+  constructor(
+    gameScreen,
+    left,
+    top,
+    width,
+    height,
+    gameWidth,
+    gameHeight,
+    game
+  ) {
     this.gameScreen = gameScreen;
     this.left = left;
     this.top = top;
@@ -17,25 +26,34 @@ class Player {
     this.element.style.borderRadius = "50%";
     this.element.style.backgroundColor = "black";
     this.gameScreen.appendChild(this.element);
+    this.game = game;
   }
 
-  move() {
-    this.gameScreen.addEventListener("mousemove", (e) => {
-      this.left =
-        e.clientX - this.gameScreen.getBoundingClientRect().x - this.width / 2;
-      this.top =
-        e.clientY - this.gameScreen.getBoundingClientRect().y - this.height / 2;
-      this.element.style.top = `${this.top}px`;
-      this.element.style.left = `${this.left}px`;
-    });
+  move(e) {
+    const nextLeft =
+      e.clientX - this.gameScreen.getBoundingClientRect().x - this.width / 2;
+    const nextTop =
+      e.clientY - this.gameScreen.getBoundingClientRect().y - this.height / 2;
+
+    this.left = nextLeft;
+    this.top = nextTop;
+    this.element.style.left = `${this.left}px`;
+    this.element.style.top = `${this.top}px`;
+
+    // console.log(!this.game.checkCollisionWithPen(nextLeft, nextTop, this));
+    // // Vérification de collision avant de mettre à jour la position
+    // if (!this.game.checkCollisionWithPen(nextLeft, nextTop, this)) {
+    //   this.left = nextLeft;
+    //   this.top = nextTop;
+    //   this.element.style.left = `${this.left}px`;
+    //   this.element.style.top = `${this.top}px`;
+    //   console.log("move");
   }
 
   center() {
     return {
       centerX: this.left + this.width / 2,
-      centerY: this.top + this.height / 2
-  };
+      centerY: this.top + this.height / 2,
+    };
   }
-
-  updatePosition() {}
 }

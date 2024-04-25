@@ -1,5 +1,14 @@
 class Sheep {
-  constructor(gameScreen, left, top, width, height, gameWidth, gameHeight) {
+  constructor(
+    gameScreen,
+    left,
+    top,
+    width,
+    height,
+    gameWidth,
+    gameHeight,
+    game
+  ) {
     this.gameScreen = gameScreen;
     this.left = left;
     this.top = top;
@@ -17,6 +26,7 @@ class Sheep {
     this.element.style.borderRadius = "50%";
     this.element.style.backgroundColor = "grey";
     this.gameScreen.appendChild(this.element);
+    this.game = game;
   }
 
   isOutOfGameScreen() {
@@ -32,24 +42,26 @@ class Sheep {
     const dx = player.center().centerX - this.center().centerX;
     const dy = player.center().centerY - this.center().centerY;
     const distance = Math.sqrt(dx * dx + dy * dy);
-    const escapeDistance = 20; // Distance que le mouton s'éloignera
+    const escapeDistance = 20;
     const isRadiusTouching =
       distanceBetweenPlayerAndSheep(game.player, game.sheeps[0]) <=
       game.player.radius + game.sheeps[0].radius;
 
-    // Le mouton ne bouge que si le joueur est assez proche
     if (isRadiusTouching) {
-      // Se déplacer directement loin du joueur
-      this.left -= escapeDistance * (dx / distance);
-      this.top -= escapeDistance * (dy / distance);
+      const nextLeft = this.left - escapeDistance * (dx / distance);
+      const nextTop = this.top - escapeDistance * (dy / distance);
+      this.left = nextLeft;
+      this.top = nextTop;
+      this.element.style.left = `${this.left}px`;
+      this.element.style.top = `${this.top}px`;
 
-      this.updatePosition();
+      // if (!this.game.checkCollisionWithPen(nextLeft, nextTop, this)) {
+      //   this.left = nextLeft;
+      //   this.top = nextTop;
+      //   this.element.style.left = `${this.left}px`;
+      //   this.element.style.top = `${this.top}px`;
+      // }
     }
-  }
-
-  updatePosition() {
-    this.element.style.left = `${this.left}px`;
-    this.element.style.top = `${this.top}px`;
   }
 
   center() {

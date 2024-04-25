@@ -15,9 +15,10 @@ class Game {
       this.dogWidth,
       this.dogHeight,
       this.width,
-      this.height
+      this.height,
+      this
     );
-    this.pen = document.querySelector("#sheep-pen")
+    this.pen = document.querySelector("#sheep-pen");
     this.gameIsOver = false;
     this.gameIntervalId = null;
     this.gameLoopFrequency = Math.floor(1000 / 60);
@@ -29,14 +30,13 @@ class Game {
     this.startScreen.style.display = "none";
     this.gameScreen.style.visibility = "visible";
     this.addSheep();
-
+    this.gameScreen.addEventListener("mousemove", (e) => this.player.move(e));
     this.gameIntervalId = setInterval(() => {
       this.gameLoop();
     }, this.gameLoopFrequency);
   }
 
   gameLoop() {
-    this.update();
     const pen = document.getElementById("sheep-pen");
 
     this.sheeps.forEach((sheep) => {
@@ -48,7 +48,6 @@ class Game {
         this.endGame();
       }
     });
-    console.log(this.sheeps)
   }
 
   winGame() {
@@ -61,15 +60,14 @@ class Game {
     this.gameEndScreen.style.display = "block";
     this.gameScreen.style.visibility = "hidden";
     this.gameScreen.innerHTML = "";
-    this.sheeps[0].remove();
+    this.sheeps[0].element.remove();
   }
 
-
   restart() {
-    clearInterval(this.gameIntervalId); 
+    clearInterval(this.gameIntervalId);
     this.gameIsOver = false;
     this.sheeps = [];
-    this.gameScreen.innerHTML = ''; 
+    this.gameScreen.innerHTML = "";
     this.gameScreen.appendChild(this.pen);
 
     this.player = new Player(
@@ -89,15 +87,12 @@ class Game {
 
     this.start();
   }
-  update() {
-    this.player.move();
-  }
 
   addSheep() {
-    const spawnX = this.width - (this.dogWidth * 4);
+    const spawnX = this.width - this.dogWidth * 4;
     const spawnY = this.height - this.dogHeight * 4;
-    const sheepX = Math.floor(Math.random() * (spawnX)) + (this.dogWidth*2);
-    const sheepY = Math.floor(Math.random() * spawnY) + this.dogHeight*2;
+    const sheepX = Math.floor(Math.random() * spawnX) + this.dogWidth * 2;
+    const sheepY = Math.floor(Math.random() * spawnY) + this.dogHeight * 2;
 
     this.sheeps.push(
       new Sheep(
@@ -107,8 +102,41 @@ class Game {
         this.dogWidth,
         this.dogHeight,
         this.width,
-        this.height
+        this.height,
+        this
       )
     );
   }
+
+  // checkCollisionWithPen(_nextLeft, _nextTop, elementToCheck) {
+  //   const pen = document.getElementById("sheep-pen");
+  //   const penRect = pen.getBoundingClientRect();
+  //   const elRect = elementToCheck.element.getBoundingClientRect();
+
+  //   const hMove = elementToCheck.left - _nextLeft;
+  //   const vMove = elementToCheck.top - _nextTop;
+  //   const nextRight = elRect.right + hMove;
+  //   const nextLeft = elRect.left + hMove;
+  //   const nextTop = elRect.top + vMove;
+  //   // const nextBottom = elRect.bottom + vMove;
+  //   const newPenBottom = penRect.bottom + elementToCheck.height;
+  //   // // console.log({
+  //   //   PRbottom: penRect.bottom,
+  //   //   nTop: nextTop,
+  //   //   nextRight,
+  //   //   nextLeft,
+  //   //   PRleft: penRect.left,
+  //   //   PRright: penRect.right,
+  //   // });
+  //   if (
+  //     nextTop <= newPenBottom &&
+  //     elRect.bottom > newPenBottom &&
+  //     ((nextRight > penRect.left && nextRight < penRect.right) ||
+  //       (nextLeft > penRect.left && nextLeft < penRect.right))
+  //   ) {
+  //     // console.log("collision detected");
+  //     return true; // Collision detected
+  //   }
+  //   return false;
+  // }
 }

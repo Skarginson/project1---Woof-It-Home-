@@ -7,6 +7,7 @@ class Game {
     this.gameEndScreen = document.querySelector("#game-end");
     this.winMessage = document.querySelector("#win-message");
     this.loseMessage = document.querySelector("#lose-message");
+    this.howToDiv = document.querySelector("#howto");
     this.height = 700;
     this.width = 700;
     this.sheeps = [];
@@ -33,6 +34,7 @@ class Game {
     this.gameScreen.style.visibility = "visible";
     this.winMessage.style.display = "none";
     this.loseMessage.style.display = "none";
+    this.howToDiv.style.display = "none";
     this.addSheep();
     this.gameScreen.addEventListener("mousemove", (e) => this.player.move(e));
     this.gameIntervalId = setInterval(() => {
@@ -62,6 +64,11 @@ class Game {
   loseGame() {
     this.loseMessage.style.display = "block";
     this.endGame();
+  }
+
+  howTo() {
+    this.startScreen.style.display = "none";
+    this.howToDiv.style.display = "block";
   }
 
   endGame() {

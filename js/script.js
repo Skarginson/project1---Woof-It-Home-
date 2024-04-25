@@ -1,14 +1,24 @@
 const gameScreen = document.querySelector("#game-screen");
 const game = new Game(gameScreen);
-const startButton = document.getElementById("start-button");
-const restartButton = document.getElementById("restart-button");
+const startButton = document.querySelector("#start-button");
+const startButton2 = document.querySelector("#howto button");
+const restartButton = document.querySelector("#restart-button");
+const howToButton = document.querySelector("#howto-button");
 
 startButton.addEventListener("click", function () {
   game.start();
 });
 
+startButton2.addEventListener("click", function () {
+  game.start();
+});
+
 restartButton.addEventListener("click", function () {
   game.restart();
+});
+
+howToButton.addEventListener("click", function () {
+  game.howTo();
 });
 
 function getElementCenter(element) {
@@ -22,15 +32,14 @@ function getElementCenter(element) {
 
 function distanceBetweenPlayerAndSheep(player, sheep) {
   const AB =
-    (player.center().centerX -
-    sheep.center().centerX) **2 +
-    (player.center().centerY - sheep.center().centerY) **2;
+    (player.center().centerX - sheep.center().centerX) ** 2 +
+    (player.center().centerY - sheep.center().centerY) ** 2;
   const C = Math.sqrt(AB);
   return C;
 }
 
 function radiusTouching(player, sheep) {
-    console.log("radius touching");
+  console.log("radius touching");
   // woof.mp3
   // beeeh.mp3
-  }
+}

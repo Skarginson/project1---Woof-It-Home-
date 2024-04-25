@@ -1,4 +1,4 @@
-# Woot It Home !
+# Woof It Home !
 
 Développé par Skarginson. <br>
 Premier projet de mon bootcamp Ironhack webdev.

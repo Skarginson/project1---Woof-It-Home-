@@ -55,7 +55,6 @@ class Game {
   }
 
   winGame() {
-    // alert("Victoire ! Le mouton est en sécurité dans son enclos ! Bon chien !");
     this.winMessage.style.display = "block";
     this.endGame();
   }

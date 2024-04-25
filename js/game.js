@@ -48,15 +48,12 @@ class Game {
         this.endGame();
       }
     });
+    console.log(this.sheeps)
   }
 
   winGame() {
-    clearInterval(this.gameIntervalId);
-    this.gameIsOver = true;
     alert("Victoire ! Le mouton est en sécurité dans son enclos ! Bon chien !");
-    this.gameEndScreen.style.display = "block";
-    this.gameScreen.style.visibility = "hidden";
-    this.gameScreen.innerHTML = "";
+    this.endGame();
   }
   endGame() {
     clearInterval(this.gameIntervalId);
@@ -64,17 +61,17 @@ class Game {
     this.gameEndScreen.style.display = "block";
     this.gameScreen.style.visibility = "hidden";
     this.gameScreen.innerHTML = "";
+    this.sheeps[0].remove();
   }
 
+
   restart() {
-    clearInterval(this.gameIntervalId); // Arrêter le jeu actuel
+    clearInterval(this.gameIntervalId); 
     this.gameIsOver = false;
-    this.sheeps = []; // Réinitialiser la liste des moutons
+    this.sheeps = [];
+    this.gameScreen.innerHTML = ''; 
+    this.gameScreen.appendChild(this.pen);
 
-    this.gameScreen.innerHTML = ''; // Nettoyer le contenu du gameScreen
-    this.gameScreen.appendChild(this.pen); // Ajouter à nouveau l'enclos
-
-    // Recréer le joueur
     this.player = new Player(
       this.gameScreen,
       this.width / 2 - this.dogWidth / 2,
@@ -86,14 +83,10 @@ class Game {
     );
     this.gameScreen.appendChild(this.player.element);
 
-    this.addSheep(); // Ajoutez un nouveau mouton si nécessaire
-
-    // Réinitialiser les styles et la visibilité
     this.startScreen.style.display = "none";
     this.gameEndScreen.style.display = "none";
     this.gameScreen.style.visibility = "visible";
 
-    // Démarrer le jeu à nouveau
     this.start();
   }
   update() {
@@ -101,8 +94,10 @@ class Game {
   }
 
   addSheep() {
-    const sheepX = Math.floor(Math.random() * (this.width - this.dogWidth));
-    const sheepY = Math.floor(Math.random() * (this.height - this.dogHeight));
+    const spawnX = this.width - (this.dogWidth * 4);
+    const spawnY = this.height - this.dogHeight * 4;
+    const sheepX = Math.floor(Math.random() * (spawnX)) + (this.dogWidth*2);
+    const sheepY = Math.floor(Math.random() * spawnY) + this.dogHeight*2;
 
     this.sheeps.push(
       new Sheep(

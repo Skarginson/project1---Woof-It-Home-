@@ -1,10 +1,15 @@
 body {
   padding: 0;
   text-align: center;
+  background-image: url("../images/background_start.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 75% 50%;
 }
 
 #game-intro {
-  padding: 20px 0px;
+  margin-top: 250px;
+  color: #054eeb;
 }
 
 #game-container {
@@ -20,8 +25,8 @@ body {
   padding: 20px 0px;
   overflow: hidden;
   position: relative;
-  background-size: cover;
-  background-color: green;
+  background-size: contain;
+  background-image: url("../images/background.webp");
 }
 
 #sheep-pen {
@@ -30,16 +35,24 @@ body {
   position: absolute;
   right: 0px;
   top: 0px;
-  background-color: maroon;
+  background-size: cover;
+  background-image: url("../images/shelter.webp");
 }
 
 .sheep {
   transition: top 0.2s linear, left 0.2s linear;
+  background-size: cover;
+  background-image: url("../images/sheep.webp");
 }
 
 .player,
 .sheep {
   position: absolute;
+}
+
+.player {
+  background-size: cover;
+  background-image: url("../images/dog.webp");
 }
 
 #game-end {
@@ -61,7 +74,7 @@ body {
 
 body button {
   font-size: 30px;
-  background-color: #870007;
+  background-color: #1d7c05;
   color: #fff;
   padding: 20px 40px;
   border: 0;
